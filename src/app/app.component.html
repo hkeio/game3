@@ -13,26 +13,44 @@
   }
 </div>
 
+<div id="hint">
+  @if (showHint) {
+    Hinweis: {{ hint }}
+  } @else {
+    <button (click)="getHint()">Hinweis</button>
+  }
+</div>
+
 <div id="message">
-  @if (isWon()) {
-    Glückwunsch! Du hast das Wort erraten!
-  } @else if (isLost()) {
-    Leider verloren. Das Wort war "<span>{{ word }}</span
-    >"
+  <span>
+    @if (isWon()) {
+      Glückwunsch!<br />
+      Du hast das Wort erraten!
+    } @else if (isLost()) {
+      Leider verloren.<br />
+      Das Wort war "<span>{{ word.letters }}</span
+      >"
+    }
+  </span>
+
+  @if (isWon() || isLost()) {
+    <button (click)="location.reload()">Nochmal!</button>
   } @else {
     {{ guessesAllowed - wrongGuesses }} Versuche übrig
   }
 </div>
 
 <div id="keyboard">
-  @for (key of keys; track $index) {
-    <button
-      (click)="onKeyClick($any({ key }))"
-      [disabled]="letterIsGuessed(key)"
-      [class.correct]="letterIsNeeded(key) && letterIsGuessed(key)"
-      [class.wrong]="!letterIsNeeded(key) && letterIsGuessed(key)"
-    >
-      {{ key }}
-    </button>
+  @if (!isWon() && !isLost()) {
+    @for (key of keys; track $index) {
+      <button
+        (click)="onKeyClick($any({ key }))"
+        [disabled]="letterIsGuessed(key)"
+        [class.correct]="letterIsNeeded(key) && letterIsGuessed(key)"
+        [class.wrong]="!letterIsNeeded(key) && letterIsGuessed(key)"
+      >
+        {{ key }}
+      </button>
+    }
   }
 </div>

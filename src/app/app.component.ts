@@ -1,5 +1,5 @@
-import { JsonPipe } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { DOCUMENT, JsonPipe } from '@angular/common';
+import { Component, HostListener, Inject } from '@angular/core';
 import { Word, words } from './words';
 
 @Component({
@@ -10,9 +10,10 @@ import { Word, words } from './words';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  guessesAllowed = 6;
+  guessesAllowed = 7;
   wrongGuesses = 0;
   lettersGuessed: string[] = [];
+  showHint = false;
 
   words: Word[] = words.map((word) => {
     return { ...word, letters: word.letters.toLocaleUpperCase() };
@@ -23,6 +24,8 @@ export class AppComponent {
   lettersNeeded = this.word.letters
     .split('')
     .filter((letter, index, self) => self.indexOf(letter) === index);
+  hint: string =
+    this.word.hints[Math.floor(Math.random() * this.word.hints.length)];
 
   @HostListener('document:keypress', ['$event'])
   onKeyClick(event: KeyboardEvent) {
@@ -48,12 +51,24 @@ export class AppComponent {
     console.log('lettersGuessed:', this.lettersGuessed);
   }
 
+  location: Location;
+
+  constructor(@Inject(DOCUMENT) private readonly document: Document) {
+    this.location = document.location;
+  }
+
   isWon() {
     return this.lettersNeeded.every((letter) => this.letterIsGuessed(letter));
   }
 
   isLost() {
     return this.wrongGuesses >= this.guessesAllowed;
+  }
+
+  getHint() {
+    this.showHint = true;
+    this.wrongGuesses++;
+    this.wrongGuesses++;
   }
 
   letterIsGuessed(letter: string) {
