@@ -1,6 +1,4 @@
-<div id="category">
-  {{ word.category }}
-</div>
+<div id="category">Kategorie: {{ word.category }}</div>
 
 <div id="word">
   @for (letter of word.letters; track $index) {
@@ -14,7 +12,7 @@
   }
 </div>
 
-<div id="hint">
+<div id="message">
   @if (!isWon() && !isLost()) {
     @if (showHint) {
       Hinweis: {{ hint }}
@@ -22,9 +20,7 @@
       <button (click)="getHint()">Hinweis</button>
     }
   }
-</div>
 
-<div id="message">
   <span>
     @if (isWon()) {
       Glückwunsch!<br />

@@ -20,9 +20,7 @@
 
 <div id="keyboard">
   @for (key of keys; track $index) {
-    <button (click)="onKeyClick($any({ key }))">
-      {{ key }}
-    </button>
+    <button (click)="onKeyClick($any({ key }))">{{ key }}</button>
   }
   <button (click)="clear()">X</button>
 </div>
