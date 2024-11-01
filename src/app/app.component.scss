@@ -1,4 +1,23 @@
 :host {
   height: 100vh;
   display: block;
+
+  #navigation {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    background-color: #eee;
+    border-bottom: 1px solid #ccc;
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    padding: 8px;
+
+    a {
+      color: #222;
+      font-size: large;
+    }
+  }
 }

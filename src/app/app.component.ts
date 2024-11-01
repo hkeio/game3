@@ -1,12 +1,10 @@
-import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { MathComponent } from './math/math.component';
-import { WordsComponent } from './words/words.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [JsonPipe, WordsComponent, MathComponent],
+  imports: [RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
