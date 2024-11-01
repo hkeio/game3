@@ -16,7 +16,7 @@ export class MathComponent {
     right: this.randomNumber(1, 10),
     operator: this.randomOperator(),
   };
-  keys = '1234567890'.split('');
+  keys = '123456789-0'.split('');
 
   answer = '';
   allowedKeys = '1234567890-'.split('');
