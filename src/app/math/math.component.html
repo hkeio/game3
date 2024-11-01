@@ -1,0 +1,28 @@
+<div id="equation">
+  {{ equation.left }}
+  {{ equation.operator }}
+  {{ equation.right }} =
+</div>
+
+<div>
+  <input readonly="true" [(ngModel)]="answer" /><br />
+  <button (click)="onAnswer()">OK</button>
+</div>
+
+<div id="message">
+  <span>
+    @if (isWrong) {
+      Leider nicht richtig.<br />
+      Probiere es noch einmal!
+    }
+  </span>
+</div>
+
+<div id="keyboard">
+  @for (key of keys; track $index) {
+    <button (click)="onKeyClick($any({ key }))">
+      {{ key }}
+    </button>
+  }
+  <button (click)="clear()">X</button>
+</div>

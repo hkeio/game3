@@ -1,11 +1,11 @@
-import { DOCUMENT, JsonPipe } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { Component, HostListener, Inject } from '@angular/core';
 import { Word, words } from './data';
 
 @Component({
   selector: 'app-words',
   standalone: true,
-  imports: [JsonPipe],
+  imports: [],
   templateUrl: './words.component.html',
   styleUrl: './words.component.scss',
 })
@@ -27,7 +27,7 @@ export class WordsComponent {
   hint: string =
     this.word.hints[Math.floor(Math.random() * this.word.hints.length)];
 
-  @HostListener('document:keypress', ['$event'])
+  @HostListener('document:keydown', ['$event'])
   onKeyClick(event: KeyboardEvent) {
     const key = event.key.toLocaleUpperCase();
     console.log('Key clicked:', key);

@@ -1,0 +1,34 @@
+:host {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: xxx-large;
+
+  div {
+    text-align: center;
+  }
+
+  input {
+    font-size: xxx-large;
+    width: 100px;
+    text-align: center;
+  }
+
+  button {
+    font-size: xx-large;
+  }
+
+  #keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 130px;
+    gap: 8px;
+
+    button {
+      width: 38px;
+    }
+  }
+}
