@@ -5,9 +5,11 @@
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0",
     "build": "ng build",
-    "release": "rm -rf ./docs && ng build --configuration production --base-href /game3/ && cp -r ./dist/game3/browser* ./docs && cp ./docs/index.html ./docs/404.html",
+    "build:prod": "rm -rf ./docs && ng build --configuration production --base-href /game3/ && cp -r ./dist/game3/browser* ./docs && cp ./docs/index.html ./docs/404.html",
+    "release": "npm run build:prod && git add . && git commit -m 'release' && npm version patch",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "postversion": "git push && git push --tags"
   },
   "private": true,
   "dependencies": {
