@@ -9,11 +9,11 @@
     background-color: #eee;
     border-bottom: 1px solid #ccc;
 
-    width: 100%;
+    width: calc(100% - 16px);
+    padding: 8px;
     display: flex;
     justify-content: center;
     gap: 18px;
-    padding: 8px;
 
     a {
       color: #222;
